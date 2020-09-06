@@ -51,12 +51,13 @@ class HashTable(): #type: abstract unordered associative array
         probe_counter = 1
         probe(key, bucket_size, probe_counter)
     
-    def chain():
+    def chain(): #TO BE IMPLEMENTED
         """
         Use seperate chaining to handle collisions
         Average: O(1)
         Worst Case: O(n)
         """
+        pass
 
     def hash(self, key):
         """

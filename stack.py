@@ -26,18 +26,8 @@ class Stack():
             print("Empty stack")
         else:
             print(self.top.data)
+            return self.top.data
 
     def is_empty(self):
         if self.top == None:
             print("Stack is empty")
-
-node1 = Node(1)
-node2 = Node(2)
-node3 = Node(3)
-stack = Stack()
-stack.push(node1)
-stack.push(node2)
-stack.push(node3)
-stack.pop()
-stack.pop()
-stack.pop()

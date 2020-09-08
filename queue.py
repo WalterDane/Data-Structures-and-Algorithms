@@ -28,3 +28,4 @@ class Queue():
     
     def peek(self):
         print(self.front.data)
+        return self.front.data

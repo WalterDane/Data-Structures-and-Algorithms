@@ -5,8 +5,7 @@ class HashTable(): #type: abstract unordered associative array
     def insert(self, key, value):
         """
         Inserts a key and its associated value
-        Average: O(1)
-        Worst Case: O(n)
+        Time Complexity: O(n)
         """
         index = index(key, self.len(buckets))
         self.buckets[index] = value
@@ -14,8 +13,7 @@ class HashTable(): #type: abstract unordered associative array
     def search(self, key):
         """
         Searches for the value for the given key
-        Average: O(1)
-        Worst Case: O(n)
+        Time Complexity: O(n)
         """
         index = index(key, self.len(buckets))
         value = self.buckets
@@ -23,8 +21,7 @@ class HashTable(): #type: abstract unordered associative array
     def index(self, key, bucket_size):
         """
         Finds the index given the key and bucket size
-        Average: O(1)
-        Worst Case: O(n)
+        Time Complexity: O(n)
         """
         if self.buckets[index] != 0:
             probe_counter = 0
@@ -36,8 +33,7 @@ class HashTable(): #type: abstract unordered associative array
     def probe(key, bucket_size, probe_counter):
         """
         Use linear probing and probe recursively until an available index is found
-        Average: O(1)
-        Worst Case: O(n)
+        Time Complexity: O(n)
         """
         if probe_counter > 1:
             hash = hash(key)
@@ -54,8 +50,7 @@ class HashTable(): #type: abstract unordered associative array
     def chain(): #TO BE IMPLEMENTED
         """
         Use seperate chaining to handle collisions
-        Average: O(1)
-        Worst Case: O(n)
+        Time Complexity: O(n)
         """
         pass
 

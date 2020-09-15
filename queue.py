@@ -46,7 +46,7 @@ class LinkedListQueue():
         else:
             return False
 
-class ArrayQueue():
+class ListQueue():
     def __init__(self):
         self.queue = []
 
@@ -55,21 +55,26 @@ class ArrayQueue():
         Prepends node to the beginning of the list
         Time Complexity: O(n)
         """
-        self.queue.insert(0, Node)
+        self.queue.append(Node)
 
     def dequeue(self):
         """
         Removes node at the end of the list
         Time Complexity: O(1)
         """
-        self.queue.pop()
+        self.queue.pop(0)
 
     def peek(self):
-        print(self.queue[0])
+        if len(self.queue) == 0:
+            print("Queue is empty")
+        else:
+            return self.queue[0]
 
     def is_empty(self):
-        if not self.queue:
-            print("List is empty")
-    
+        if len(self.queue) == 0:
+            return True
+        else:
+            return False
+
     def print_queue(self):
         print(self.queue)

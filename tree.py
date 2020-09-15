@@ -4,81 +4,97 @@ from queue import ListQueue
 class BinaryTree():
     def __init__(self):
         self.root = None
-        self.queue = ListQueue()
 
-    def insert(self, BinaryTreeNode):
+    def insert(self, node):
         """
         Insert from top to bottom, left to right. We will use level-order traversal BFT to achieve this
         """
-        self.level_order_insertion(BinaryTreeNode)
+        self.level_order_insertion(node)
 
-    def level_order_insertion(self, BinaryTreeNode):
+    def level_order_insertion(self, node):
+        queue = ListQueue()
+
         if self.root == None:
-            self.root = BinaryTreeNode
-            self.queue.enqueue(self.root)
+            self.root = node
+            queue.enqueue(self.root)
             print("Inserting root: " + str(self.root.data))
         else:
-            item = self.queue.peek()
-            if self.queue.is_empty() == False:
+            item = queue.peek()
+            if queue.is_empty() == False:
                 if item.left_child == None:
-                    item.left_child = BinaryTreeNode
-                    self.queue.enqueue(item.left_child)
+                    item.left_child = node
+                    queue.enqueue(item.left_child)
                     print("Inserting " +  str(item.left_child.data))
                 else:
                     if item.right_child == None:
-                        item.right_child = BinaryTreeNode
-                        self.queue.enqueue(item.right_child)
+                        item.right_child = node
+                        queue.enqueue(item.right_child)
                         print("Inserting " +  str(item.right_child.data))
-                        self.queue.dequeue()
-                        item = self.queue.peek()
+                        queue.dequeue()
+                        item = queue.peek()
 
     def BFT(self):
         """
         Performs breadth first level order traversal on the tree
         Time Complexity: O(n)
         """
-        self.queue = ListQueue()
+        queue = ListQueue()
 
         if self.root == None:
             print("Cannot perform breadth-first traversal because the tree is empty")
         else:
-            self.queue.enqueue(self.root)
-            item = self.queue.peek()
+            queue.enqueue(self.root)
+            item = queue.peek()
             print("Visiting root: " + str(item.data))
             while True:
-                if self.queue.is_empty() == False:
+                if queue.is_empty() == False:
                     if item.left_child != None:
-                        self.queue.enqueue(item.left_child)
+                        queue.enqueue(item.left_child)
                         print("Visiting " +  str(item.left_child.data))
                     if item.right_child != None:
-                        self.queue.enqueue(item.right_child)
+                        queue.enqueue(item.right_child)
                         print("Visiting " +  str(item.right_child.data))
-                    self.queue.dequeue()
-                    item = self.queue.peek()
+                    queue.dequeue()
+                    item = queue.peek()
                 else:
                     print("All nodes have been visited!")
                     break
 
-class BinarySearchTree(BinaryTree):
-    def __init__(self): #TO BE IMPLEMENTED
+class BinarySearchTree():
+    def __init__(self):
+        self.root = None
+
+    def insert_helper(self, parent, node):
+        if node.data < parent.data:
+            if parent.left_child == None:
+                parent.left_child = node
+                print("Inserting left child: " + str(parent.left_child.data) + " under parent: " + str(parent.data))
+            else:
+                self.insert(parent.left_child, node)
+        if node.data >= parent.data:
+            if parent.right_child == None:
+                parent.right_child = node
+                print("Inserting right child: " + str(parent.right_child.data) + " under parent: " + str(parent.data))
+            else:
+                self.insert_helper(parent.right_child, node)
+
+    def insert(self, node):
+        """
+        Inserts the node into the Binary Search Tree. The root node
+        will be passed first.
+        Time Complexity: O(n)
+        """
+        if self.root == None:
+            self.root = node
+            self.parent = self.root
+        else:
+            self.insert_helper(self.root, node)
+            
+    def preorder_traversal(self): #TBI
         pass
 
-nodes = []
-node1 = BinaryTreeNode(1)
-node2 = BinaryTreeNode(2)
-node3 = BinaryTreeNode(3)
-node4 = BinaryTreeNode(4)
-node5 = BinaryTreeNode(5)
-node6 = BinaryTreeNode(6)
-node7 = BinaryTreeNode(7)
-nodes.append(node1)
-nodes.append(node2)
-nodes.append(node3)
-nodes.append(node4)
-nodes.append(node5)
-nodes.append(node6)
-nodes.append(node7)
-binary_tree = BinaryTree()
-for node in nodes:
-    binary_tree.insert(node)
-binary_tree.BFT()
+    def inorder_traversal(self): #TBI
+        pass
+
+    def postorder_traversal(self): #TBI
+        pass

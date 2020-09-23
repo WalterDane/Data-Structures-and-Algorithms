@@ -4,7 +4,8 @@ vertices and E is the set of edges, connecting the pairs of vertices
 """
 
 class Vertex():
-    def __init__(self, data):
+    def __init__(self, data = None, label = None):
+        self.label = label
         self.data = data
 
 class Edge():
@@ -13,21 +14,32 @@ class Edge():
 
 class Graph():
     def __init__(self):
-        pass
+        self.label = 0
+        self.adjacency_matrix = []
 
-    def add_vertex(self, node):
+    def add_vertex(self, vertex):
         """
         adds a vertex to the graph
         """
-        pass
+        if self.label == 0:
+            vertex.label = 0
+            self.adjacency_matrix.append([0])
+            self.label += 1
+        else:
+            vertex.label = self.label
+            for each in self.adjacency_matrix:
+                each.append(0)
+            self.adjacency_matrix.append([0] * len(self.adjacency_matrix[0]))
+            self.label += 1
+        print(self.adjacency_matrix)
 
-    def add_edge(self, node1, node2):
+    def add_edge(self, vertex1, vertex2):
         """
         adds an edge between the two vertices of the graph
         """
         pass
-
-    def remove_vertex(self, node):
+        
+    def remove_vertex(self, vertex):
         """
         removes a specified vertex
         """
@@ -36,14 +48,22 @@ class Graph():
     def remove_edge(self, edge):
         pass
 
-    def contains(self, node):
+    def contains(self, vertex):
         """
         checks to see if the graph contains a certain vertex
         """
         pass
 
-    def has_edge(self, node1, node2):
+    def has_edge(self, vertex1, vertex2):
         """
         checks to see if their is a connection between any two vertices
         """
         pass
+
+vertex1 = Vertex("Elon Musk")
+vertex2 = Vertex("Jeff Bezos")
+vertex3 = Vertex("Mark Zuckerberg")
+graph = Graph()
+graph.add_vertex(vertex1)
+graph.add_vertex(vertex2)
+graph.add_vertex(vertex3)

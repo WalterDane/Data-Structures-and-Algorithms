@@ -39,15 +39,20 @@ class Graph():
         self.adjacency_matrix[vertex1.label][vertex2.label] = 1
         self.adjacency_matrix[vertex2.label][vertex1.label] = 1
         print(self.adjacency_matrix)
-        
+
     def remove_vertex(self, vertex):
         """
-        removes a specified vertex
+        removes the vertex from the adjacency matrix
         """
+        self.adjacency_matrix.pop(vertex.label)
+        for row in self.adjacency_matrix:
+            row.pop(vertex.label)
+        print(self.adjacency_matrix)
         pass
 
-    def remove_edge(self, edge):
-        pass
+    def remove_edge(self, vertex1, vertex2):
+        self.adjacency_matrix[vertex1.label][vertex2.label] = 0
+        self.adjacency_matrix[vertex2.label][vertex1.label] = 0
 
     def contains(self, vertex):
         """
@@ -61,11 +66,12 @@ class Graph():
         """
         pass
 
-vertex1 = Vertex("Elon Musk")
-vertex2 = Vertex("Jeff Bezos")
-vertex3 = Vertex("Mark Zuckerberg")
+vertex0 = Vertex("Elon Musk")
+vertex1 = Vertex("Jeff Bezos")
+vertex2 = Vertex("Mark Zuckerberg")
 graph = Graph()
+graph.add_vertex(vertex0)
 graph.add_vertex(vertex1)
 graph.add_vertex(vertex2)
-graph.add_vertex(vertex3)
-graph.add_edge(vertex2, vertex3)
+graph.add_edge(vertex0, vertex2)
+graph.remove_vertex(vertex2)

@@ -1,8 +1,3 @@
-"""
-Formal Definition: A graph is a pair of sets (V, E) where V is the set of
-vertices and E is the set of edges, connecting the pairs of vertices
-"""
-
 class Vertex():
     def __init__(self, data = None, label = None):
         self.label = label
@@ -51,27 +46,30 @@ class Graph():
         pass
 
     def remove_edge(self, vertex1, vertex2):
+        """
+        removes the edge from the adjaceny matrix
+        """
         self.adjacency_matrix[vertex1.label][vertex2.label] = 0
         self.adjacency_matrix[vertex2.label][vertex1.label] = 0
 
-    def contains(self, vertex):
+    def contains(self, label):
         """
         checks to see if the graph contains a certain vertex
         """
-        pass
+        try:
+            self.adjacency_matrix[label]
+        except IndexError:
+            print("The graph does not contain the vertex")
+        else:
+            print("The graph contains the vertex")
 
     def has_edge(self, vertex1, vertex2):
         """
-        checks to see if their is a connection between any two vertices
+        checks to see if there is a connection between the two specified vertices
         """
-        pass
-
-vertex0 = Vertex("Elon Musk")
-vertex1 = Vertex("Jeff Bezos")
-vertex2 = Vertex("Mark Zuckerberg")
-graph = Graph()
-graph.add_vertex(vertex0)
-graph.add_vertex(vertex1)
-graph.add_vertex(vertex2)
-graph.add_edge(vertex0, vertex2)
-graph.remove_vertex(vertex2)
+        try:
+            self.adjacency_matrix[vertex1][vertex2]
+        except IndexError:
+            print("The graph does not contain the edge")
+        else:
+            print("The graph contains the edge")

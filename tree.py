@@ -33,7 +33,7 @@ class BinaryTree(): #note, this the way this tree is built ensures a complete bi
                         queue.dequeue()
                         item = queue.peek()
 
-    def in_order_traversal(self):
+    def level_order_traversal(self):
         """
         Performs breadth first level order traversal on the tree
         Time Complexity: O(n)
@@ -60,10 +60,13 @@ class BinaryTree(): #note, this the way this tree is built ensures a complete bi
                     print("All nodes have been visited!")
                     break
 
-    def pre-order-traversal(self):
+    def in_order_traversal(self):
         pass
 
-    def post-order-traversal(self):
+    def pre_order_traversal(self):
+        pass
+
+    def post_order_traversal(self):
         pass
 
 

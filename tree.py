@@ -33,7 +33,7 @@ class BinaryTree(): #note, this the way this tree is built ensures a complete bi
                         queue.dequeue()
                         item = queue.peek()
 
-    def BFT(self):
+    def in_order_traversal(self):
         """
         Performs breadth first level order traversal on the tree
         Time Complexity: O(n)

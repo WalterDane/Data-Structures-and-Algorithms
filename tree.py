@@ -60,6 +60,13 @@ class BinaryTree(): #note, this the way this tree is built ensures a complete bi
                     print("All nodes have been visited!")
                     break
 
+    def pre-order-traversal(self):
+        pass
+
+    def post-order-traversal(self):
+        pass
+
+
 class BinarySearchTree():
     def __init__(self):
         self.root = None

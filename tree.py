@@ -1,7 +1,7 @@
 from node import BinaryTreeNode
 from queue import ListQueue
 
-class BinaryTree():
+class BinaryTree(): #note, this the way this tree is built ensures a complete binary tree
     def __init__(self):
         self.root = None
 

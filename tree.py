@@ -6,9 +6,9 @@ class BinaryTree(): #note, this the way this tree is built ensures a complete bi
         self.root = None
 
     def insert(self, node):
-        """
+        '''
         Insert from top to bottom, left to right. We will use level-order traversal BFT to achieve this
-        """
+        '''
         self.level_order_insertion(node)
 
     def level_order_insertion(self, node):
@@ -34,10 +34,10 @@ class BinaryTree(): #note, this the way this tree is built ensures a complete bi
                         item = queue.peek()
 
     def level_order_traversal(self):
-        """
+        '''
         Performs breadth first level order traversal on the tree
         Time Complexity: O(n)
-        """
+        '''
         queue = ListQueue()
 
         if self.root == None:
@@ -60,15 +60,29 @@ class BinaryTree(): #note, this the way this tree is built ensures a complete bi
                     print("All nodes have been visited!")
                     break
 
-    def in_order_traversal(self):
+    def in_order_traversal(self): #left, root, right
+        """
+        1. Recursively traverse the left subtree.
+        2. Visit the root.
+        3. Recursively traverse the right subtree.
+        """
         pass
 
-    def pre_order_traversal(self):
+    def pre_order_traversal(self): #root, left, right
+        """
+        1. Visit the root
+        2. Recursively traverse the left subtree
+        3. Recursively traverse the right subtree
+        """
         pass
 
-    def post_order_traversal(self):
+    def post_order_traversal(self): #left, right, root
+        """
+        1. Recursively traverse the left subtree.
+        2. Recursively traverse the right subtree.
+        3. Visit the root.
+        """
         pass
-
 
 class BinarySearchTree():
     def __init__(self):

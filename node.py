@@ -1,10 +1,10 @@
-class BinaryTreeNode(self):
+class BinaryTreeNode():
     def __init__(self, data = None):
         self.data = data
         self.left_child = None
         self.right_child = None
 
-class TreeNode(self): #n-ary tree node
+class TreeNode(): #n-ary tree node
     def __init__(self, data = None):
         self.data = data
         self.children = []

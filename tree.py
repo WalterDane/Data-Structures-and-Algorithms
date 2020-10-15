@@ -1,9 +1,10 @@
 from node import BinaryTreeNode
-from queue import ListQueue
+from myqueues import ListQueue
 
 class BinaryTree(): #note, this the way this tree is built ensures a complete binary tree
     def __init__(self):
         self.root = None
+        self.queue = ListQueue()
 
     def insert(self, node):
         '''
@@ -12,26 +13,24 @@ class BinaryTree(): #note, this the way this tree is built ensures a complete bi
         self.level_order_insertion(node)
 
     def level_order_insertion(self, node):
-        queue = ListQueue()
-
         if self.root == None:
             self.root = node
-            queue.enqueue(self.root)
-            print("Inserting root: " + str(self.root.data))
+            self.queue.enqueue(self.root)
+            print("Inserting " + str(self.root.data))
         else:
-            item = queue.peek()
-            if queue.is_empty() == False:
+            item = self.queue.peek()
+            if self.queue.is_empty() == False:
                 if item.left_child == None:
                     item.left_child = node
-                    queue.enqueue(item.left_child)
+                    self.queue.enqueue(item.left_child)
                     print("Inserting " +  str(item.left_child.data))
                 else:
                     if item.right_child == None:
                         item.right_child = node
-                        queue.enqueue(item.right_child)
+                        self.queue.enqueue(item.right_child)
                         print("Inserting " +  str(item.right_child.data))
-                        queue.dequeue()
-                        item = queue.peek()
+                        self.queue.dequeue()
+                        item = self.queue.peek()
 
     def level_order_traversal(self):
         '''
@@ -59,22 +58,55 @@ class BinaryTree(): #note, this the way this tree is built ensures a complete bi
                 else:
                     print("All nodes have been visited!")
                     break
+    
+    def cannot_traverse(self):
+        print("Cannot traverse because the tree is empty")
 
+    def in_order_traversal_helper(self, node):
+        if node == None:
+            return
+        else:
+            self.in_order_traversal_helper(node.left_child)
+            print(node.data)
+            self.in_order_traversal_helper(node.right_child)
+            
     def in_order_traversal(self): #left, root, right
         """
         1. Recursively traverse the left subtree.
         2. Visit the root.
         3. Recursively traverse the right subtree.
         """
-        pass
+        if self.root == None:
+            self.cannot_traverse()
+        else:
+            self.in_order_traversal_helper(self.root)
+
+    def pre_order_traversal_helper(self, node):
+        if node == None:
+            return
+        else:
+            print(node.data)
+            self.pre_order_traversal_helper(node.left_child)
+            self.pre_order_traversal_helper(node.right_child)
 
     def pre_order_traversal(self): #root, left, right
         """
-        1. Visit the root
-        2. Recursively traverse the left subtree
-        3. Recursively traverse the right subtree
+        1. Visit the root.
+        2. Recursively traverse the left subtree.
+        3. Recursively traverse the right subtree.
         """
-        pass
+        if self.root == None:
+            self.cannot_traverse()
+        else:
+            self.pre_order_traversal_helper(self.root)
+    
+    def post_order_traversal_helper(self, node):
+        if node == None:
+            return
+        else:
+            self.post_order_traversal_helper(node.left_child)
+            self.post_order_traversal_helper(node.right_child)
+            print(node.data)
 
     def post_order_traversal(self): #left, right, root
         """
@@ -82,7 +114,10 @@ class BinaryTree(): #note, this the way this tree is built ensures a complete bi
         2. Recursively traverse the right subtree.
         3. Visit the root.
         """
-        pass
+        if self.root == None:
+            self.cannot_traverse()
+        else:
+            self.post_order_traversal_helper(self.root)
 
 class BinarySearchTree():
     def __init__(self):
@@ -113,12 +148,3 @@ class BinarySearchTree():
             self.parent = self.root
         else:
             self.insert_helper(self.root, node)
-            
-    def preorder_traversal(self): #TBI
-        pass
-
-    def inorder_traversal(self): #TBI
-        pass
-
-    def postorder_traversal(self): #TBI
-        pass

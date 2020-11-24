@@ -7,33 +7,21 @@ class LinkedListQueue():
         self.rear = None
     
     def enqueue(self, Node):
-        """
-        Prepends node to the beginning of the list
-        Time Complexity: O(1)
-        """
         if self.front == None:
             self.front = Node
-            #print("Inserting: " + str(self.front.data))
         else:
             if self.front.next == None:
                 self.front.next = Node
                 self.rear = Node
-                #print("Inserting: " + str(self.rear.data))
             else:
                 self.rear.next = Node
                 self.rear = Node
-                #print("Inserting: " + str(self.rear.data))
             
     def dequeue(self):
-        """
-        Removes node at the end of the list
-        Time Complexity: O(1)
-        """
         if self.front == None:
             print("Can't dequeue because queue is empty")
         else:
-            #print("Dequeuing " + str(self.front.data))
-            self.front = self.front.next #garbabe collector will clean up old object since there's no reference to it
+            self.front = self.front.next
     
     def peek(self):
         print(self.front.data)
@@ -51,17 +39,9 @@ class ListQueue():
         self.queue = []
 
     def enqueue(self, Node):
-        """
-        Prepends node to the beginning of the list
-        Time Complexity: O(n)
-        """
         self.queue.append(Node)
 
     def dequeue(self):
-        """
-        Removes node at the end of the list
-        Time Complexity: O(1)
-        """
         self.queue.pop(0)
 
     def peek(self):
@@ -78,3 +58,18 @@ class ListQueue():
 
     def print_queue(self):
         print(self.queue)
+
+class PriorityQueue:
+    def __init__(self):
+        self.priority_queue = []
+
+    def enqueue(self, value):
+        self.priority_queue.append(value)
+        self.priority_queue = sorted(self.priority_queue, reverse=True)
+
+    def dequeue(self):
+        return self.priority_queue.pop()
+
+    def is_empty(self):
+        if len(self.priority_queue) == 0:
+            print("priority queue is empty")
